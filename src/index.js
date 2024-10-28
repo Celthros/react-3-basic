@@ -1,13 +1,18 @@
-import React, { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import React from "react";
+import ReactDOM from 'react-dom/client';
 
-import App from './App';
+function Page(){
+  return React.createElement('div', null, [
+    React.createElement('h1', null, `Hi ${Date().toLocaleString()}`),
+    React.createElement('p', null, 'Hello'),
+    React.createElement('p', null, 'Hey')
+  ]);
+}
 
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
+const rootEl = document.getElementById('root');
+const root = ReactDOM.createRoot(rootEl);
 
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+
+setInterval(function(){
+  root.render(Page());
+}, 1000);

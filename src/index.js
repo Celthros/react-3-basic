@@ -1,12 +1,20 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
+import './style.css';
+
+function Header(){
+  const clock = Date().toLocaleString();
+  return <h1 className="orange">Hello {clock}</h1>;
+}
 
 function Page(){
-  return React.createElement('div', null, [
-    React.createElement('h1', null, `Hi ${Date().toLocaleString()}`),
-    React.createElement('p', null, 'Hello'),
-    React.createElement('p', null, 'Hey')
-  ]);
+  return (
+    <>
+        <Header />
+        <p>Hey</p>
+        <p>Hi</p>
+    </>
+  );
 }
 
 const rootEl = document.getElementById('root');
@@ -14,5 +22,5 @@ const root = ReactDOM.createRoot(rootEl);
 
 
 setInterval(function(){
-  root.render(Page());
+  root.render(<Page />);
 }, 1000);

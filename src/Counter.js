@@ -1,7 +1,27 @@
 import React from 'react';
 
-export function Counter(){
+export default function Counter(){
     const [count, setCount] = React.useState(0);
 
-    return <a href="#">Count: {count}</a>
+    React.useEffect(() =>{
+        if(localStorage.getItem('count')){
+            setCount(
+                parseInt(localStorage.getItem('count'))
+            );
+        }
+    }, []);
+
+    React.useEffect(() =>{
+        localStorage.setItem('count', count);
+    }, [count]);
+
+    function handleClick(event){
+        event.preventDefault();
+
+        setCount((previousValue) =>{
+            return previousValue + 1;
+        });
+    }
+
+    return <a href="#" onClick={handleClick}>Count: {count}</a>
 }
